@@ -1,8 +1,7 @@
 belly-laugh
 ===========
 
-## Url
-http://localhost:7881/
+* Uri `http://localhost:7881/`
+* Command Line `curl http://localhost:7881/bellylaugh`
 
-## Command line
-curl http://localhost:7881/bellylaugh
+Note: currently only works on MacOS
