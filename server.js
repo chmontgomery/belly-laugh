@@ -2,6 +2,8 @@ var express = require('express'),
   exec = require('exec'),
   app = express();
 
+function noop(){}
+
 function playLaugh(cb) {
   exec('play belly_laugh.mp3', cb);
 }
@@ -13,19 +15,18 @@ app.get('/', function(req, res){
 });
 
 app.get('/important', function(req, res) {
-  exec('play important.mp3');
+  exec('play important_work.mp3',noop);
   res.send(200);
 });
 
 app.get('/4d3d3d', function(req, res) {
-  exec('play 4d3d3d.mp3');
+  exec('play 4d3d3d.mp3',noop);
   res.send(200);
 });
 
 app.get('/bellylaugh', function(req, res){
-  playLaugh(function() {
-    res.send(200);
-  });
+  playLaugh(noop);
+  res.send(200);
 });
 
 app.listen(7881);
