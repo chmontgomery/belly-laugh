@@ -3,7 +3,7 @@ var express = require('express'),
   app = express();
 
 function playLaugh(cb) {
-  exec('afplay belly_laugh.mp3', cb);
+  exec('play belly_laugh.mp3', cb);
 }
 
 app.get('/', function(req, res){
