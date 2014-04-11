@@ -12,6 +12,16 @@ app.get('/', function(req, res){
   });
 });
 
+app.get('/important', function(req, res) {
+  exec('play important.mp3');
+  res.send(200);
+});
+
+app.get('/4d3d3d', function(req, res) {
+  exec('play 4d3d3d.mp3');
+  res.send(200);
+});
+
 app.get('/bellylaugh', function(req, res){
   playLaugh(function() {
     res.send(200);
