@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <script src="/bower_components/platform/platform.js"></script>
+  <link rel="import" href="/bower_components/voice-elements/dist/voice-player.html">
+  <link rel="import" href="/bower_components/voice-elements/dist/voice-recognition.html">
+</head>
+<body>
+
+Belly laughing since 2014.
+
+<h1>voice elements</h1>
+
+<form id="recognition-form" class="pure-form">
+  <fieldset>
+    <textarea id="recognition-input" readonly=""></textarea>
+  </fieldset>
+  <fieldset>
+    <button id="recognition-submit" class="pure-button pure-button-primary">Start!</button>
+  </fieldset>
+</form>
+
+<form id="recognition-form-play" class="pure-form">
+  <fieldset>
+    <button class="pure-button pure-button-primary">Speak!</button>
+  </fieldset>
+</form>
+
+<voice-recognition id="recognition-element"></voice-recognition>
+
+<voice-player id="mi-elemento" accent="es-ES" text=""></voice-player>
+
+<script>
+  (function () {
+    var form = document.querySelector('#recognition-form'),
+        input = document.querySelector('#recognition-input'),
+        element = document.querySelector('#recognition-element');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      element.start();
+    });
+
+    var playForm = document.querySelector('#recognition-form-play'),
+        elementPlayer = document.querySelector('#mi-elemento');
+
+    playForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      console.log(input.value);
+      setTimeout(function() {
+        elementPlayer.setAttribute("text", input.value);
+      }, 1000);
+      elementPlayer.speak();
+    });
+
+    element.addEventListener('result', function (e) {
+      input.textContent = e.detail.result;
+    });
+  })();
+</script>
+
+<script>
+  (function (window, undefined) {
+    var SpeechRecognition = window.webkitSpeechRecognition;
+    var SpeechSynthesis = window.speechSynthesis;
+
+    if (!SpeechRecognition || !SpeechSynthesis) {
+      var supportWarning = document.getElementsByClassName('brower-support');
+      supportWarning[0].style.display = 'block';
+    }
+  })(window);
+</script>
+
+</body>
+</html>

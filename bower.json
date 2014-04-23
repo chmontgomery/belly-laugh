@@ -1,0 +1,19 @@
+{
+  "name": "belly-laugh",
+  "version": "0.0.0",
+  "homepage": "https://github.com/chmontgomery/belly-laugh",
+  "authors": [
+    "Chris Montgomery <christopher.montgomery@dowjones.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "voice-elements": "~0.1.1"
+  }
+}
