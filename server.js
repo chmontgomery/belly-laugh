@@ -2,7 +2,6 @@ var express = require('express'),
   exec = require('exec'),
   app = express(),
   os = require('os'),
-  chalk = require('chalk'),
   linuxPlayCmd = 'play',
   macPlayCmd = 'afplay';
 
@@ -13,7 +12,7 @@ function playSound(path, cb) {
   var cmd = os.type() === 'Darwin' ? macPlayCmd : linuxPlayCmd,
     execCmd = cmd + ' ' + path;
   exec(execCmd, cb || noop);
-  console.log('executed:', chalk.black.bgCyan(execCmd));
+  console.log('executed:', execCmd);
 }
 
 app.engine('.html', require('ejs').__express);
@@ -45,4 +44,4 @@ app.get('/bellylaugh', function (req, res) {
 });
 
 app.listen(7881);
-console.log('server listening at', chalk.black.bgYellow('http://localhost:7881'));
+console.log('server listening at', 'http://localhost:7881');
