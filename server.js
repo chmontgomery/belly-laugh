@@ -15,6 +15,12 @@ function playSound(path, cb) {
   console.log('executed:', execCmd);
 }
 
+function speak(text, cb) {
+  var execCmd = 'espeak "' + text + '"';
+  exec(execCmd, cb || noop);
+  console.log('executed:', execCmd);
+}
+
 app.engine('.html', require('ejs').__express);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
@@ -40,6 +46,12 @@ app.get('/4d3d3d', function (req, res) {
 
 app.get('/bellylaugh', function (req, res) {
   playSound('sounds/belly_laugh.mp3');
+  res.send(200);
+});
+
+app.get('/goodmorning/:name', function (req, res) {
+  var name = req.params.name;
+  speak('good morning ' + name);
   res.send(200);
 });
 
