@@ -16,7 +16,7 @@ function playSound(path, cb) {
 }
 
 function speak(text, cb) {
-  var execCmd = 'espeak "' + text + '"';
+  var execCmd = 'espeak -v female3 "' + text + '"';
   exec(execCmd, cb || noop);
   console.log('executed:', execCmd);
 }
@@ -52,6 +52,12 @@ app.get('/bellylaugh', function (req, res) {
 app.get('/goodmorning/:name', function (req, res) {
   var name = req.params.name;
   speak('good morning ' + name);
+  res.send(200);
+});
+
+app.get('/say/:text', function (req, res) {
+  var text = req.params.text.split('_').join(' ');
+  speak(text);
   res.send(200);
 });
 
